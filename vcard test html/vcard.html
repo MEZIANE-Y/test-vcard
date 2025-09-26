@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download VCard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <img src="img/PRESSUR-logo.png">
+                <h1>Mickaël HOARAU</h1>
+                <p class="title">Président Directeur Général</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-item">
+                    <span class="label">Email:</span>
+                    <span class="value">mickael.hoarau@pressur.fr</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Tél</span>
+                    <span class="value">06 83 72 20 04</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">Entreprise:</span>
+                    <span class="value">Pressur sécurité</span>
+                </div>
+                <div class="info-item">
+                    <span class="label">site internet:</span>
+                    <span class="value">www.pressur-securite.com</span>
+                </div>
+            </div>
+            
+            <button class="download-btn" onclick="downloadVCard()">
+                <span class="btn-icon">📱</span>
+                Télécharger la fiche contact
+            </button>
+            
+            <p class="footer-text">Enregistrer le contact sur votre appareil</p>
+        </div>
+    </div>
+
+    <script>
+        function downloadVCard() {
+            const vCardData = `BEGIN:VCARD
+VERSION:3.0
+FN: Mickaël sécurité – HOARAU PRÉSSUR
+N:sécurité Mickaël – HOARAU;PRÉSSUR;;;
+ORG:Pressur sécurité
+TITLE:Président Directeur Général
+TEL;CELL:+33683722004
+TEL;WORK:+33494517979
+EMAIL:mickael.hoarau@pressur.fr
+ADR;WORK:;;Espace Horizon 115 avenue du 8 mai 1945 ;Fréjus;;83600;France
+URL;TYPE=site internet:https://www.pressur-securite.com
+URL;TYPE=adresse:https://maps.app.goo.gl/LD2DWzx1cxE3obu86
+END:VCARD
+;
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'mickael-hoarau-pressur.vcf';
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
